@@ -4,13 +4,12 @@ fetch('/temp/data/data.json')
   .then(function(response) {
     return response.json();
   })
-  .then(function(users) {
+  .then(function(data) {
+
     var data = {
-      labels: users.map(function(user) {
-        return user.name;
-      }),
-      series: users.map(function(user) {
-        return user.name.length;
+      labels: ['60', '61', '62', '63', '64', '65', '66', '67', '68', '69', '70', '71', '72', '73', '74', '75', '76', '77', '78', '79', '80', '81', '82', '83', '84', '85'],
+      series: data.map(function(t) {
+        return t.temp;
       })
     };
 
@@ -18,3 +17,27 @@ fetch('/temp/data/data.json')
       distributeSeries: true
     });
   });
+
+// -------------------------------------------- //
+/*
+fetch('/temp/data/test.json')
+.then(function(response) {
+  return response.json();
+})
+.then(function(users) {
+
+  var data = {
+    labels: users.map(function(user) {
+      console.log(user.name);
+      return user.name;
+    }),
+    series: users.map(function(user) {
+      return user.name.length;
+    })
+  };
+
+  var chart = new Chartist.Bar('.ct-chart', data, {
+    distributeSeries: true
+  });
+});
+*/
