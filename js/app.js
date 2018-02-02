@@ -19,7 +19,7 @@ fetch('/temp/data/data.json')
   });
 */
 // -------------------------------------------- //
-
+/*
 fetch('/temp/data/test.json')
 .then(function(response) {
   return response.json();
@@ -39,4 +39,35 @@ fetch('/temp/data/test.json')
   var chart = new Chartist.Bar('.ct-chart', data, {
     distributeSeries: true
   });
+});
+*/
+// -------------------------------------------- //
+
+var defaultOptions = {
+  threshold: 0,
+  classNames: {
+    aboveThreshold: 'ct-threshold-above',
+    belowThreshold: 'ct-threshold-below'
+  },
+  maskNames: {
+    aboveThreshold: 'ct-threshold-mask-above',
+    belowThreshold: 'ct-threshold-mask-below'
+  }
+};
+
+new Chartist.Line('.ct-chart', {
+  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+  series: [
+    [5, -4, 3, 7, 20, 10, 3, 4, 8, -10, 6, -8]
+  ]
+}, {
+  showArea: true,
+  axisY: {
+    onlyInteger: true
+  },
+  plugins: [
+    Chartist.plugins.ctThreshold({
+      threshold: 4
+    })
+  ]
 });
