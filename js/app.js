@@ -1,5 +1,5 @@
 // Get data from data/data.json file
-
+/*
 fetch('/temp/data/data.json')
   .then(function(response) {
     return response.json();
@@ -17,9 +17,9 @@ fetch('/temp/data/data.json')
       distributeSeries: true
     });
   });
-
+*/
 // -------------------------------------------- //
-/*
+
 fetch('/temp/data/test.json')
 .then(function(response) {
   return response.json();
@@ -40,4 +40,3 @@ fetch('/temp/data/test.json')
     distributeSeries: true
   });
 });
-*/
