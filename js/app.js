@@ -51,39 +51,48 @@ fetch('/temp/data/data.json')
 })
 .then(function(data) {
   var dates = [];
+  var temps = [];
+
   for (var i = 0; i < data.length; i++) {
+    var temp = data[i].temp;
     var date = new Date(data[i].time);
     var day = date.getDate();
-    console.log(day);
+
+    if (day != dates[dates.length - 1]) {
+      dates.push(day);
+      temps.push(temp); // random temp from this day
+    }
   }
+
+  var data = {
+    labels: dates,
+    series: [[66, 65, 55, 36, 81, 64, 68, 69, 71, 66, 63, 61, 58, 54, 59, 63, 67, 69, 71, 74, 79, 81, 76, 71]]
+  };
+
+  var defaultOptions = {
+    threshold: 0,
+    classNames: {
+      aboveThreshold: 'ct-threshold-above',
+      belowThreshold: 'ct-threshold-below'
+    },
+    maskNames: {
+      aboveThreshold: 'ct-threshold-mask-above',
+      belowThreshold: 'ct-threshold-mask-below'
+    }
+  };
+
+  var chart = new Chartist.Line('.ct-chart', data,
+  {
+    showArea: true,
+    axisY: {
+      onlyInteger: true
+    },
+    plugins: [
+      Chartist.plugins.ctThreshold({
+        threshold: 74.1
+      })
+    ]
+  });
 });
 
 // ------------------------------------------------ Graph
-var defaultOptions = {
-  threshold: 0,
-  classNames: {
-    aboveThreshold: 'ct-threshold-above',
-    belowThreshold: 'ct-threshold-below'
-  },
-  maskNames: {
-    aboveThreshold: 'ct-threshold-mask-above',
-    belowThreshold: 'ct-threshold-mask-below'
-  }
-};
-
-var chart = new Chartist.Line('.ct-chart', {
-  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-  series: [
-    [5, -4, 3, 7, 20, 10, 3, 4, 8, -10, 6, -8]
-  ]
-}, {
-  showArea: true,
-  axisY: {
-    onlyInteger: true
-  },
-  plugins: [
-    Chartist.plugins.ctThreshold({
-      threshold: 4
-    })
-  ]
-});
