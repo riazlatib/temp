@@ -1,3 +1,7 @@
+body {
+  background-color: coral;
+}
+
 .ct-line.ct-threshold-above, .ct-point.ct-threshold-above, .ct-bar.ct-threshold-above {
   stroke: #f05b4f;
 }
@@ -12,4 +16,8 @@
 
 .ct-area.ct-threshold-below {
   fill: #59922b;
+}
+
+.ct-line {
+  animation: dashoffset 1s linear infinite;
 }
