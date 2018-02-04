@@ -57,16 +57,19 @@ fetch('/temp/data/data.json')
     var temp = data[i].temp;
     var date = new Date(data[i].time);
     var day = date.getDate();
+    var hour = date.getHours();
 
     if (day != dates[dates.length - 1]) {
       dates.push(day);
       temps.push(temp); // random temp from this day
+    } else {
+      // console.log(hour);
     }
   }
 
   var data = {
     labels: dates,
-    series: [[66, 65, 55, 36, 81, 64, 68, 69, 71, 66, 63, 61, 58, 54, 59, 63, 67, 69, 71, 74, 79, 81, 76, 71]]
+    series: [[66, 65, 55, 58, 81, 64, 68, 69, 71, 66, 63, 61, 58, 54, 59, 63, 67, 69, 71, 74, 79, 81, 76, 71]]
   };
 
   var defaultOptions = {
@@ -89,7 +92,7 @@ fetch('/temp/data/data.json')
     },
     plugins: [
       Chartist.plugins.ctThreshold({
-        threshold: 74.1
+        threshold: 74
       })
     ]
   });

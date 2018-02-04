@@ -152,8 +152,21 @@
 	stroke-linecap: round
 }
 .ct-line {
-	stroke-width: 4px
+	stroke-width: 4px;
+	stroke-dasharray: 15;
+  stroke-dashoffset: 15;
+  animation: dash 5s linear infinite;
 }
+
+@keyframes dash {
+  /* from {
+    stroke-dashoffset: 1000;
+  } */
+  to {
+    stroke-dashoffset: 15;
+  }
+}
+
 .ct-area {
 	stroke: none;
 	fill-opacity: .1

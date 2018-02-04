@@ -17,7 +17,3 @@ body {
 .ct-area.ct-threshold-below {
   fill: #59922b;
 }
-
-.ct-line {
-  animation: dashoffset 1s linear infinite;
-}
