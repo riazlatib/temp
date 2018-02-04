@@ -51,25 +51,41 @@ fetch('/temp/data/data.json')
 })
 .then(function(data) {
   var dates = [];
-  var temps = [];
+  var avg_daily_temps = [];
+  var temp_counter = 0;
+  var temp_daily_total = 0;
 
   for (var i = 0; i < data.length; i++) {
+
     var temp = data[i].temp;
+    temp_counter++;
+    temp_daily_total += temp;
+    temp_daily_total.toFixed(1);
+    var avg_daily_temp = (temp_daily_total / temp_counter).toFixed(1);
+
     var date = new Date(data[i].time);
     var day = date.getDate();
-    var hour = date.getHours();
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var seconds = date.getSeconds();
+
+    if (hours < 10) { hours = '0' + hours; }
+    if (minutes < 10) { minutes = '0' + minutes; }
+    if (seconds < 10) { seconds = '0' + seconds; }
 
     if (day != dates[dates.length - 1]) {
       dates.push(day);
-      temps.push(temp); // random temp from this day
-    } else {
-      // console.log(hour);
+      avg_daily_temps.push(avg_daily_temp);
+      temp_counter = 1;
+      temp_daily_total = temp;
     }
+
+    console.log('Day: ' + day + ' | Time: ' + hours + ':' + minutes+ ':'  + seconds + ' | Temp: ' + temp + ' | Counter: ' + temp_counter + ' | Total: ' + temp_daily_total + ' | AVG: ' + avg_daily_temp);
   }
 
   var data = {
     labels: dates,
-    series: [[66, 65, 55, 58, 81, 64, 68, 69, 71, 66, 63, 61, 58, 54, 59, 63, 67, 69, 71, 74, 79, 81, 76, 71]]
+    series: [avg_daily_temps] //[[66, 65, 55, 58, 81, 64, 68, 69, 71, 66, 63, 61, 58, 54, 59, 63, 67, 69, 71, 74, 79, 81, 76, 71]]
   };
 
   var defaultOptions = {
