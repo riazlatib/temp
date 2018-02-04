@@ -80,7 +80,7 @@ fetch('/temp/data/data.json')
       temp_daily_total = temp;
     }
 
-    console.log('Day: ' + day + ' | Time: ' + hours + ':' + minutes+ ':'  + seconds + ' | Temp: ' + temp + ' | Counter: ' + temp_counter + ' | Total: ' + temp_daily_total + ' | AVG: ' + avg_daily_temp);
+    console.log('Day: ' + day + ' | Time: ' + hours + ':' + minutes+ ':'  + seconds + ' | Temp: ' + temp + ' | AVG: ' + avg_daily_temp);
   }
 
   var data = {
